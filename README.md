@@ -39,6 +39,11 @@ Crie seu arquivo .env
 cp .env.sample .env
 ```
 
+Crie uma base sqlite
+```
+sqlite database/database.sqlite
+```
+
 Inicialize o projeto com:
 ```
 php artisan migrate #roda as migrations
