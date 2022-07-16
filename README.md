@@ -44,8 +44,13 @@ Crie uma base sqlite
 sqlite database/database.sqlite
 ```
 
+Crie uma chave pro JWT
+```
+php artisan jwt:secret
+```
+
 Inicialize o projeto com:
 ```
 php artisan migrate #roda as migrations
-php artisan serve   #inicia uma instancia de servidor pra acesso
+php -S localhost:8000 -t public   #inicia uma instancia de servidor pra acesso
 ```
