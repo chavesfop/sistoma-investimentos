@@ -19,7 +19,7 @@ git clone git@github.com:chavesfop/sistoma-investimentos.git
 Dependencias.
 Para rodar o projeto da forma mais simples, precisamos do PHP e sqlite.
 ```
-apt install php php-sqlite sqlite3
+sudo apt install php php-sqlite sqlite3
 ```
 
 Instale o composer (gerenciador de pacotes da pasta vendor)
@@ -27,6 +27,7 @@ Instale o composer (gerenciador de pacotes da pasta vendor)
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
+sudo mv composer.phar /usr/local/bin/composer
 ```
 
 Execute o composer 
@@ -44,8 +45,13 @@ Crie uma base sqlite
 sqlite database/database.sqlite
 ```
 
+Crie uma chave pro JWT
+```
+php artisan jwt:secret
+```
+
 Inicialize o projeto com:
 ```
 php artisan migrate #roda as migrations
-php artisan serve   #inicia uma instancia de servidor pra acesso
+php -S localhost:8000 -t public   #inicia uma instancia de servidor pra acesso
 ```
