@@ -25,5 +25,10 @@ $router->group(
     function($router){
         $router->post('/logout', 'AuthController@logout');
         $router->get('/me', 'AuthController@me');
+
+        $router->get('/wallets', 'WalletController@list');
+        $router->post('/wallet', 'WalletController@add');
+        $router->post('/wallet/{walletId}', 'WalletController@update');
+        $router->delete('/wallet/{walletId}', 'WalletController@remove');
     }
 );
