@@ -19,6 +19,7 @@ $router->get('/', function () use ($router) {
 
 $router->post('/login', 'AuthController@login');
 $router->post('/register', 'AuthController@register');
+$router->get('/search/{symbol}', 'QuoteController@quote');
 
 $router->group(
     ['middleware' => 'auth'],

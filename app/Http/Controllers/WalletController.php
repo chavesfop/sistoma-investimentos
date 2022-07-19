@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class WalletController extends Controller
+    class WalletController extends Controller
 {
     protected ?Authenticatable $user;
 
