@@ -3,20 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wallet;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
     class WalletController extends Controller
 {
-    protected ?Authenticatable $user;
-
-    public function __construct(){
-        $this->user = Auth::user();
-    }
-
     public function add(Request $request) : JsonResponse
     {
         $this->validate($request, ['name' => 'required|string|between:2,100']);

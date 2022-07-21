@@ -3,48 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quote as QuoteModel;
-use Illuminate\Contracts\Auth\Authenticatable;
+use DateInterval;
+use DateTime;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Scheb\YahooFinanceApi\ApiClient;
 use Scheb\YahooFinanceApi\ApiClientFactory;
-use Scheb\YahooFinanceApi\Results\Quote;
 
 class QuoteController extends Controller
 {
-    protected ?Authenticatable $user;
     private ApiClient $client;
 
     public function __construct(){
         $this->client = ApiClientFactory::createApiClient();
+        parent::__construct();
     }
 
-    private function mapArray(Quote $quote): array
-    {
-        $new = [];
-        $test = $quote->jsonSerialize();
-        foreach ($test as $key => $data){
-            if ($data instanceof \DateTimeInterface){
-                $new[$this->camelCaseToUnderscore($key)] = $data->getTimestamp();
-                continue;
-            }
-            $new[$this->camelCaseToUnderscore($key)] = $data;
-        }
-        return $new;
-    }
-    private function camelCaseToUnderscore($string): string
-    {
-        $str = lcfirst($string);
-        $str = preg_replace("/[A-Z]/", "_"."$0", $str);
-        return strtolower($str);
-    }
-
-    public function quote(Request $request): JsonResponse
+    public function search(Request $request): JsonResponse
     {
         $symbol = strtoupper($request->route('symbol')).'.SA';
 
-        $dt = new \DateTime();
-        $dt->sub(new \DateInterval("PT15M"));
+        $dt = new DateTime();
+        $dt->sub(new DateInterval("PT15M"));
         $db = QuoteModel::query()
             ->where('symbol', $symbol)
             ->where('created_at', '>', $dt->format('Y-m-d H:i:s'));
@@ -56,6 +36,7 @@ class QuoteController extends Controller
             $quote->save();
             $quote->refresh();
         }
+
         return response()->json($quote);
 
 //        $dividends = $this->client->getHistoricalDividendData($symbol, $bg, $dt);
