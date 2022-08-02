@@ -19,10 +19,12 @@ $router->get('/', function () use ($router) {
 
 $router->post('/login', 'AuthController@login');
 $router->post('/register', 'AuthController@register');
+$router->get('/quote/{symbol}', 'QuoteController@search');
+$router->get('/quote/dividend/{symbol}', 'DividendController@search');
 
 $router->group(
     ['middleware' => 'auth'],
-    function($router){
+    function ($router) {
         $router->post('/logout', 'AuthController@logout');
         $router->get('/me', 'AuthController@me');
 
@@ -30,5 +32,7 @@ $router->group(
         $router->post('/wallet', 'WalletController@add');
         $router->post('/wallet/{walletId}', 'WalletController@update');
         $router->delete('/wallet/{walletId}', 'WalletController@remove');
+
+        $router->post('/wallet/{walletId}/transaction', 'TransactionController@add');
     }
 );
