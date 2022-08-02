@@ -19,7 +19,7 @@ class AuthController extends Controller
 
     public function register(Request $request): JsonResponse
     {
-        try {
+
             $this->validate($request, [
                 'name' => 'required|string|between:2,100',
                 'email' => 'required|string|email|max:100|unique:users',
@@ -32,9 +32,7 @@ class AuthController extends Controller
             $user->password = app('hash')->make($plainPassword);
             $user->save();
             return response()->json(['user' => $user, 'message' => 'CREATED'], 201);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'User Registration Failed!'], 409);
-        }
+
     }
 
     public function login(Request $request): JsonResponse
