@@ -1,0 +1,86 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Quote extends Model
+{
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
+
+    protected $fillable = [
+        'ask',
+        'ask_size',
+        'average_daily_volume_10_day',
+        'average_daily_volume_3_month',
+        'bid',
+        'bid_size',
+        'book_value',
+        'currency',
+        'dividend_date',
+        'earnings_timestamp',
+        'earnings_timestamp_start',
+        'earnings_timestamp_end',
+        'eps_forward',
+        'eps_trailing_twelve_months',
+        'exchange',
+        'exchange_data_delayed_by',
+        'exchange_timezone_name',
+        'exchange_timezone_short_name',
+        'fifty_day_average',
+        'fifty_day_average_change',
+        'fifty_day_average_change_percent',
+        'fifty_two_week_high',
+        'fifty_two_week_high_change',
+        'fifty_two_week_high_change_percent',
+        'fifty_two_week_low',
+        'fifty_two_week_low_change',
+        'fifty_two_week_low_change_percent',
+        'financial_currency',
+        'forward_p_e',
+        'full_exchange_name',
+        'gtm_off_set_milliseconds',
+        'language',
+        'long_name',
+        'market',
+        'market_cap',
+        'market_state',
+        'message_board_id',
+        'post_market_change',
+        'post_market_change_percent',
+        'post_market_price',
+        'post_market_time',
+        'pre_market_change',
+        'pre_market_change_percent',
+        'pre_market_price',
+        'pre_market_time',
+        'price_hint',
+        'price_to_book',
+        'open_interest',
+        'quote_source_name',
+        'quote_type',
+        'regular_market_change',
+        'regular_market_change_percent',
+        'regular_market_day_high',
+        'regular_market_day_low',
+        'regular_market_open',
+        'regular_market_previous_close',
+        'regular_market_price',
+        'regular_market_time',
+        'regular_market_volume',
+        'shares_outstanding',
+        'short_name',
+        'source_interval',
+        'symbol',
+        'tradeable',
+        'trailing_annual_dividend_rate',
+        'trailing_annual_dividend_yield',
+        'trailing_p_e',
+        'two_hundred_day_average',
+        'two_hundred_day_average_change',
+        'two_hundred_day_average_change_percent',
+    ];
+}
