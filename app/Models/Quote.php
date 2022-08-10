@@ -6,11 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quote extends Model
 {
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-    }
-
     protected $fillable = [
         'ask',
         'ask_size',
